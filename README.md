@@ -1,6 +1,8 @@
-# fff (*Fucking Fast File-Manager*)
+# fff-ftw (*Fucking Fast File-Manager*)
 
 <a href="https://asciinema.org/a/qvNlrFrGB3xKZXb6GkremjZNp" target="_blank"><img src="https://asciinema.org/a/qvNlrFrGB3xKZXb6GkremjZNp.svg" alt="img" height="210px" align="right"/></a>
+
+**This fork adds support for [ftw](https://github.com/bir-d/ftw). Simply install as usual and run with flag `--ftw` and it will automatically open files using it.**
 
 A simple file manager written in `bash`.
 
