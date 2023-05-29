@@ -592,7 +592,13 @@ open() {
         redraw full
 
     elif [[ -f $1 ]]; then
-        # Figure out what kind of file we're working with.
+	# `ftw` support
+	((ftw_enabled == 1)) && {
+	    ftw $1
+	    exit
+	}
+
+	# Figure out what kind of file we're working with.
         get_mime_type "$1"
 
         # Open all text-based files in '$EDITOR'.
@@ -1094,6 +1100,15 @@ main() {
     # Used in 'fff.vim'.
     [[ $1 == -p ]] &&
         file_picker=1
+
+    # Used for 'ftw' support. Also see open().
+    [[ $1 == --ftw ]] && {
+	[[ ! -x "$(command -v ftw)" ]] && {
+		echo "fff: ftw was not found. Install it or run fff without the --ftw flag."
+		exit 1
+	}
+	ftw_enabled=1
+    }
 
     # bash 5 and some versions of bash 4 don't allow SIGWINCH to interrupt
     # a 'read' command and instead wait for it to complete. In this case it
